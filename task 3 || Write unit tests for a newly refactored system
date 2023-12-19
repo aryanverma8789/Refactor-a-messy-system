@@ -1,0 +1,69 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+public class UserRegistrationTest {
+
+    @Test
+    public void testRegisterUser_validInput() {
+        // given
+        UserRegistration registration = new UserRegistration();
+
+        // when
+        boolean result = registration.registerUser("test@test.com", "Test User", "testpassword");
+
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    public void testRegisterUser_existingUser() {
+        // given
+        UserRegistration registration = new UserRegistration();
+        registration.registerUser("test@test.com", "Test User", "testpassword");
+
+        // when
+        boolean result = registration.registerUser("test@test.com", "Test User", "testpassword");
+
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    public void testRegisterUser_emptyEmail() {
+        // given
+        UserRegistration registration = new UserRegistration();
+
+        // when
+        boolean result = registration.registerUser("", "Test User", "testpassword");
+
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    public void testRegisterUser_emptyUsername() {
+        // given
+        UserRegistration registration = new UserRegistration();
+
+        // when
+        boolean result = registration.registerUser("test@test.com", "", "testpassword");
+
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    public void testRegisterUser_emptyPassword() {
+        // given
+        UserRegistration registration = new UserRegistration();
+
+        // when
+        boolean result = registration.registerUser("test@test.com", "Test User", "");
+
+        // then
+        assertFalse(result);
+    }
+}
