@@ -1,0 +1,192 @@
+# prompt: Refactor a messy system
+
+### This is a messy system that needs to be refactored.
+
+class User:
+  def __init__(self, name, email):
+    self.name = name
+    self.email = email
+
+class Post:
+  def __init__(self, title, content, author):
+    self.title = title
+    self.content = content
+    self.author = author
+
+class Comment:
+  def __init__(self, content, author, post):
+    self.content = content
+    self.author = author
+    self.post = post
+
+# This function creates a new user.
+def create_user(name, email):
+  user = User(name, email)
+  return user
+
+# This function creates a new post.
+def create_post(title, content, author):
+  post = Post(title, content, author)
+  return post
+
+# This function creates a new comment.
+def create_comment(content, author, post):
+  comment = Comment(content, author, post)
+  return comment
+
+# This function gets all the users.
+def get_users():
+  users = []
+  for user in User.objects.all():
+    users.append(user)
+  return users
+
+# This function gets all the posts.
+def get_posts():
+  posts = []
+  for post in Post.objects.all():
+    posts.append(post)
+  return posts
+
+# This function gets all the comments.
+def get_comments():
+  comments = []
+  for comment in Comment.objects.all():
+    comments.append(comment)
+  return comments
+
+# This function gets a user by their email address.
+def get_user_by_email(email):
+  user = User.objects.get(email=email)
+  return user
+
+# This function gets a post by its title.
+def get_post_by_title(title):
+  post = Post.objects.get(title=title)
+  return post
+
+# This function gets a comment by its content.
+def get_comment_by_content(content):
+  comment = Comment.objects.get(content=content)
+  return comment
+
+# This function updates a user's name.
+def update_user_name(user, new_name):
+  user.name = new_name
+  user.save()
+
+# This function updates a post's title.
+def update_post_title(post, new_title):
+  post.title = new_title
+  post.save()
+
+# This function updates a comment's content.
+def update_comment_content(comment, new_content):
+  comment.content = new_content
+  comment.save()
+
+# This function deletes a user.
+def delete_user(user):
+  user.delete()
+
+# This function deletes a post.
+def delete_post(post):
+  post.delete()
+
+# This function deletes a comment.
+def delete_comment(comment):
+  comment.delete()
+
+### This is the refactored system.
+
+class User:
+  def __init__(self, name, email):
+    self.name = name
+    self.email = email
+
+class Post:
+  def __init__(self, title, content, author):
+    self.title = title
+    self.content = content
+    self.author = author
+
+class Comment:
+  def __init__(self, content, author, post):
+    self.content = content
+    self.author = author
+    self.post = post
+
+# This function creates a new user.
+def create_user(name, email):
+  user = User(name, email)
+  user.save()
+  return user
+
+# This function creates a new post.
+def create_post(title, content, author):
+  post = Post(title, content, author)
+  post.save()
+  return post
+
+# This function creates a new comment.
+def create_comment(content, author, post):
+  comment = Comment(content, author, post)
+  comment.save()
+  return comment
+
+# This function gets all the users.
+def get_users():
+  users = User.objects.all()
+  return users
+
+# This function gets all the posts.
+def get_posts():
+  posts = Post.objects.all()
+  return posts
+
+# This function gets all the comments.
+def get_comments():
+  comments = Comment.objects.all()
+  return comments
+
+# This function gets a user by their email address.
+def get_user_by_email(email):
+  user = User.objects.get(email=email)
+  return user
+
+# This function gets a post by its title.
+def get_post_by_title(title):
+  post = Post.objects.get(title=title)
+  return post
+
+# This function gets a comment by its content.
+def get_comment_by_content(content):
+  comment = Comment.objects.get(content=content)
+  return comment
+
+# This function updates a user's name.
+def update_user_name(user, new_name):
+  user.name = new_name
+  user.save()
+
+# This function updates a post's title.
+def update_post_title(post, new_title):
+  post.title = new_title
+  post.save()
+
+# This function updates a comment's content.
+def update_comment_content(comment, new_content):
+  comment.content = new_content
+  comment.save()
+
+# This function deletes a user.
+def delete_user(user):
+  user.delete()
+
+# This function deletes a post.
+def delete_post(post):
+  post.delete()
+
+# This function deletes a comment.
+def delete_comment(comment):
+  comment.delete()
