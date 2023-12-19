@@ -1,0 +1,68 @@
+# prompt: Write unit tests for a newly refactored system add new functionality using TDD
+
+import unittest
+
+class UserTest(unittest.TestCase):
+
+  def test_create_user(self):
+    user = User('John Doe', 'john.doe@example.com')
+    self.assertEqual(user.name, 'John Doe')
+    self.assertEqual(user.email, 'john.doe@example.com')
+
+  def test_update_user_name(self):
+    user = User('John Doe', 'john.doe@example.com')
+    user.update_name('Jane Doe')
+    self.assertEqual(user.name, 'Jane Doe')
+
+  def test_delete_user(self):
+    user = User('John Doe', 'john.doe@example.com')
+    user.delete()
+    self.assertIsNone(User.get_user_by_email('john.doe@example.com'))
+
+class PostTest(unittest.TestCase):
+
+  def test_create_post(self):
+    user = User('John Doe', 'john.doe@example.com')
+    post = Post('My First Post', 'This is my first post.', user)
+    self.assertEqual(post.title, 'My First Post')
+    self.assertEqual(post.content, 'This is my first post.')
+    self.assertEqual(post.author, user)
+
+  def test_update_post_title(self):
+    user = User('John Doe', 'john.doe@example.com')
+    post = Post('My First Post', 'This is my first post.', user)
+    post.update_title('My Second Post')
+    self.assertEqual(post.title, 'My Second Post')
+
+  def test_delete_post(self):
+    user = User('John Doe', 'john.doe@example.com')
+    post = Post('My First Post', 'This is my first post.', user)
+    post.delete()
+    self.assertIsNone(Post.get_post_by_title('My First Post'))
+
+class CommentTest(unittest.TestCase):
+
+  def test_create_comment(self):
+    user = User('John Doe', 'john.doe@example.com')
+    post = Post('My First Post', 'This is my first post.', user)
+    comment = Comment('This is my first comment.', user, post)
+    self.assertEqual(comment.content, 'This is my first comment.')
+    self.assertEqual(comment.author, user)
+    self.assertEqual(comment.post, post)
+
+  def test_update_comment_content(self):
+    user = User('John Doe', 'john.doe@example.com')
+    post = Post('My First Post', 'This is my first post.', user)
+    comment = Comment('This is my first comment.', user, post)
+    comment.update_content('This is my second comment.')
+    self.assertEqual(comment.content, 'This is my second comment.')
+
+  def test_delete_comment(self):
+    user = User('John Doe', 'john.doe@example.com')
+    post = Post('My First Post', 'This is my first post.', user)
+    comment = Comment('This is my first comment.', user, post)
+    comment.delete()
+    self.assertIsNone(Comment.get_comment_by_content('This is my first comment.'))
+
+if __name__ == '__main__':
+  unittest.main()
